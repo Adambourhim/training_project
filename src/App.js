@@ -1,5 +1,6 @@
 import Contact from "./component/contact/Contact";
 import Navbar from "./component/navbar/Navbar";
+import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 function App() {
   return (
