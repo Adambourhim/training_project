@@ -2,8 +2,14 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import "./contact.css";
 class Contact extends Component {
-  showContact(message) {
-    console.log("salam", message);
+  state = {
+    showContactToggle: true,
+  };
+
+  showContact() {
+    this.setState({
+      showContactToggle: !this.state.showContactToggle,
+    });
   }
   render() {
     const { name, tel, email } = this.props.data;
@@ -13,15 +19,17 @@ class Contact extends Component {
           <h4 className="card-title">
             {name}
             <i
-              onClick={this.showContact.bind(this, name)}
+              onClick={this.showContact.bind(this)}
               className="fa fa-sort-down"
             ></i>
           </h4>
           <p className="card-text">
-            <ul className="list-group">
-              <li className="list-group-item">{tel}</li>
-              <li className="list-group-item">{email}</li>
-            </ul>
+            {this.state.showContactToggle ? (
+              <ul className="list-group">
+                <li className="list-group-item">{tel}</li>
+                <li className="list-group-item">{email}</li>
+              </ul>
+            ) : null}
           </p>
         </div>
       </div>
