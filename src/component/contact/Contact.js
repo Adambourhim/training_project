@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import "./contact.css";
 class Contact extends Component {
   render() {
-    const { name, tel, email } = this.props;
+    const { name, tel, email } = this.props.data;
     return (
       <div className="card">
         <div className="card-body">
@@ -25,8 +25,6 @@ Contact.defaultProps = {
   email: "my@email.com",
 };
 Contact.propTypes = {
-  name: PropTypes.string.isRequired,
-  tel: PropTypes.string.isRequired,
-  email: PropTypes.string.isRequired,
+  data: PropTypes.object.isRequired,
 };
 export default Contact;
