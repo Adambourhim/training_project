@@ -11,6 +11,10 @@ class Contact extends Component {
       showContactToggle: !this.state.showContactToggle,
     });
   }
+  deleteContact = () => {
+    console.log("delete contact");
+    this.props.deleteContactFromChild();
+  };
   render() {
     const { name, tel, email } = this.props.data;
     return (
@@ -19,18 +23,23 @@ class Contact extends Component {
           <h4 className="card-title">
             {name}
             <i
+              style={{ color: "green", marginLeft: "10px", cursor: "pointer" }}
               onClick={this.showContact.bind(this)}
               className="fa fa-sort-down"
             ></i>
+            <i
+              style={{ color: "red", cursor: "pointer", float: "right" }}
+              className="fa fa-times"
+              onClick={this.deleteContact}
+            ></i>
           </h4>
-          <p className="card-text">
-            {this.state.showContactToggle ? (
-              <ul className="list-group">
-                <li className="list-group-item">{tel}</li>
-                <li className="list-group-item">{email}</li>
-              </ul>
-            ) : null}
-          </p>
+
+          {this.state.showContactToggle ? (
+            <ul className="list-group">
+              <li className="list-group-item">{tel}</li>
+              <li className="list-group-item">{email}</li>
+            </ul>
+          ) : null}
         </div>
       </div>
     );
@@ -43,5 +52,6 @@ Contact.defaultProps = {
 };
 Contact.propTypes = {
   data: PropTypes.object.isRequired,
+  deleteContactFromChild: PropTypes.func.isRequired,
 };
 export default Contact;

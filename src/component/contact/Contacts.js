@@ -20,13 +20,25 @@ class Contacts extends Component {
       },
     ],
   };
+  deleteContact(id) {
+    const { contacts } = this.state;
+    const newListContact = contacts.filter((contact) => contact.id !== id);
+
+    this.setState({
+      contacts: newListContact,
+    });
+  }
 
   render() {
     const { contacts } = this.state;
     return (
       <div>
         {contacts.map((contact) => (
-          <Contact data={contact} />
+          <Contact
+            key={contact.id}
+            data={contact}
+            deleteContactFromChild={this.deleteContact.bind(this, contact.id)}
+          />
         ))}
       </div>
     );
